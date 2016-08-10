@@ -1,0 +1,89 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+
+{{view App.SummaryMasterComponentsView mastersCompBinding="view.parentView.mastersObj"}}
+<tr class="component SUPERVISOR">
+  <td class="summary-label">
+    <a href="#" {{action filterHosts view.filterComponent}}>
+      {{t dashboard.services.storm.supervisors}}
+    </a>
+  </td>
+  <td class="summary-value">
+    {{#if App.router.clusterController.isServiceContentFullyLoaded}}
+      <span>
+        {{#view App.ComponentLiveTextView liveComponentsBinding="view.superVisorsLive" totalComponentsBinding="view.superVisorsTotal"}}
+          {{view.liveComponents}}/{{view.totalComponents}}
+        {{/view}}
+      </span> {{t services.service.summary.SupervisorsLIVE}}
+    {{else}}
+      {{t common.loading.eclipses}}
+    {{/if}}
+  </td>
+</tr>
+
+<!-- Divider-- make the remaining summary info on 2nd table-->
+</tbody>
+</table>
+</div>
+<div class="span6">
+  <table class="summary-info table no-borders table-condensed">
+    <tbody>
+
+    <tr class="storm-slots">
+      <td class="summary-label">
+        {{t services.service.summary.storm.freeslots}}
+      </td>
+      <td class="summary-value">
+        {{formatNull view.service.freeSlots}} / {{formatNull view.service.totalSlots}}
+        ({{formatNull view.freeSlotsPercentage empty="0"}}% {{t common.free}})
+      </td>
+    </tr>
+    <tr class="storm-tasks">
+      <td class="summary-label">
+        {{t services.service.summary.storm.tasks}}
+      </td>
+      <td class="summary-value">
+        {{formatNull view.service.totalTasks}}
+      </td>
+    </tr>
+    <tr class="storm-executors">
+      <td class="summary-label">
+        {{t services.service.summary.storm.executors}}
+      </td>
+      <td class="summary-value">
+        {{formatNull view.service.totalExecutors}}
+      </td>
+    </tr>
+    <tr class="storm-topologies">
+      <td class="summary-label">
+        {{t services.service.summary.storm.topologies}}
+      </td>
+      <td class="summary-value">
+        {{formatNull view.service.topologies}}
+      </td>
+    </tr>
+    <tr class="nimbus-uptime">
+      <td class="summary-label">
+        {{t services.service.summary.storm.nimbus.uptime}}
+      </td>
+      <td class="summary-value">
+        {{view.nimbusUptimeFormatted}}
+      </td>
+    </tr>
+
+

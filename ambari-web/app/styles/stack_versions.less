@@ -1,0 +1,581 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@import 'common.less';
+
+#advancedRepoAccordion{
+  .accordion-heading {
+    background-color: #f0f0f0;
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .accordion-body {
+    .repositories-table {
+      overflow: auto;
+      margin-bottom: 10px;
+      div {
+        float: left;
+        min-height: 1px;
+      }
+      .thead {
+        width: 100%;
+        .th {
+          font-weight: bold;
+        }
+        .first-th {
+          width: 4%;
+        }
+        .os-th {
+          width: 13%;
+        }
+        .name-th {
+          width: 17%;
+        }
+        .url-th {
+          width: 66%;
+        }
+      }
+      .tbody {
+        width: 100%;
+        .trow {
+          width: 100%;
+          border-top: 1px solid #dddddd;
+          padding-top: 10px;
+          .os-td {
+            width: 17%;
+          }
+          .sub-trow {
+            width: 100%;
+            .name-td {
+              width: 16%;
+            }
+            .validation-td {
+              width: 4%;
+            }
+            .url-td {
+              width: 63%;
+              .ember-text-field {
+                width: 100%;
+              }
+            }
+            .clear-td {
+              width: 4%;
+              padding-top: 5px;
+              padding-left: 12px;
+              a {
+                cursor: pointer;
+                text-decoration: none;
+                &.disabled-clear-button {
+                  cursor: default;
+                  .icon-remove-sign {
+                    cursor: default;
+                  }
+                }
+              }
+              .icon-remove-sign {
+                color: #808080;
+              }
+            }
+            .actions-td {
+              width: 10%;
+              padding-top: 5px;
+              a {
+                cursor: pointer;
+              }
+              .icon-undo {
+                color: rgb(243, 178, 11);
+                margin-right: 2px;
+              }
+            }
+          }
+        }
+      }
+      .textfield-error input {
+        border-color: #b94a48;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      }
+      .disabled-label {
+        color: #808080;
+      }
+    }
+    #skip-validation {
+      .checkbox {
+        margin-left: 3px;
+        margin-right: 8px;
+        margin-top: 0;
+      }
+      .icon-question-sign {
+        color: @blue;
+      }
+    }
+  }
+}
+
+#stack-upgrade-page {
+  div.current-version-box {
+    background: none repeat scroll 0 0 #e6f1f6;
+    box-shadow: 0 8px 6px -6px black;
+  }
+  .version-box {
+    position: relative;
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #d2d9dd;
+    height: 168px;
+    margin: 15px 15px 0 0;
+    padding: 5px 0;
+    a.not-active:hover {
+      text-decoration: none;
+    }
+    .out-of-sync-badge {
+      background-color: transparent;
+      font-size: 30px;
+      top: -8px;
+      position: absolute;
+      left: -8px;
+      color: orange;
+    }
+    .state {
+      margin: 15px 0;
+      line-height: 30px;
+      padding-top: 5px;
+      height: 30px;
+      i {
+        color: #0088cc;
+        font-size: 16px;
+      }
+      .label {
+        padding: 5px 20px;
+        font-size: 14px;
+      }
+      .btn-group {
+        display: inline-block;
+      }
+      .dropdown-menu {
+        cursor: pointer;
+      }
+    }
+    .installing {
+      margin-top: 10px;
+      padding-top: 0;
+      padding-bottom: 10px;
+      .progress {
+        height: 15px;
+        width: 60%;
+        margin: 0 20%;
+      }
+    }
+    .host-link a {
+      color: #0088cc;
+      font-size: 14px;
+      font-weight: normal;
+    }
+    .version {
+      color: #000;
+      text-align: center;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 20px;
+      padding: 5px 5px 0 5px;
+      margin-bottom: 0;
+      span {
+        margin-left: 20px;
+      }
+      .pull-right .not-active {
+        font-size: 15px;
+        color: #0088cc;
+        line-height: 20px;
+      }
+    }
+    .repository-name {
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+      margin: 0 0px -18px 1px;
+      padding: 1px;
+    }
+    .hosts-section {
+      margin-top: 16px;
+      width: 100%;
+      text-align: center;
+      background: #f8f8f8;
+      border-top: 1px solid #e4e4e4;
+      padding-bottom: 4px;
+    }
+    .hosts-section .hosts-bar {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .hosts-section .host-link {
+      font-size: 12px;
+    }
+  }
+}
+
+#stack-upgrade-dialog {
+  .details-box {
+    padding: 5px;
+    margin-left: 15px;
+    margin-right: 95px;
+    .button-row {
+      text-align: right;
+      padding: 5px;
+    }
+    input[type="checkbox"] {
+      margin: 0;
+    }
+    .message {
+      line-height: 30px;
+    }
+  }
+  .task-details {
+    .manage-controls a {
+      cursor: pointer;
+      margin-right: 12px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 100px;
+    }
+  }
+  .task-list {
+    overflow-x: hidden;
+    .progress {
+      margin-bottom: 0;
+    }
+    padding-left: 20px;
+    i {
+      margin-right: 5px;
+    }
+  }
+  .task-list-main-warp i {
+    font-size: 16px;
+  }
+  ul.failed-info-list {
+    max-height: 500px;
+    margin-top: 5px;
+  }
+  .upgrade-options-link {
+    position: absolute;
+    cursor: pointer;
+    right: 10%;
+    top: 13px;
+    width: 100px;
+    a {
+      font-size: 13px;
+    }
+    .icon-cogs {
+      color: #0088cc;
+      margin-right: 3px;
+    }
+  }
+  .upgrade-options-link.disabled {
+    cursor: not-allowed;
+    a, .icon-cogs {
+      color: #808080;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.repository-list {
+  .os-block {
+    border-top: 1px solid #dddddd;
+    padding-top: 10px;
+  }
+  input[type="text"] {
+    width: 80%;
+  }
+}
+
+.upgrade-options-popup .modal .modal-body {
+  min-height: 295px;
+}
+#upgrade-options-popup-content {
+  .method-options {
+    margin: 10px;
+    .method-option {
+      width: 43.5%;
+    }
+    .thumbnail {
+
+      cursor: pointer;
+      border: none;
+      width: 99%;
+      .method-icon {
+        font-size: 40px;
+      }
+      .method-name {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 2px;
+      }
+      .method-description {
+        margin-top: 5px;
+        text-align: center;
+      }
+    }
+
+    .ROLLING, .NON_ROLLING {
+      background-color: #e4e4e4;
+      .method-name,.method-icon,.method-description {
+        color: #333333;
+      }
+    }
+    .ROLLING {
+      .method-icon {
+        margin-left: 88px;
+      }
+    }
+    .NON_ROLLING {
+      .method-icon {
+        margin-left: 94px;
+      }
+    }
+    .selected.ROLLING, .selected.NON_ROLLING {
+      background-color: #d3e7ca;
+      box-shadow: 0 8px 6px -6px #b3b3b3;
+    }
+    .ROLLING:hover, .NON_ROLLING:hover {
+      background-color: #cbe3c2;
+    }
+
+    .thumbnail.not-allowed:hover {
+      background-color: #e4e4e4;
+    }
+    .thumbnail.not-allowed {
+      cursor: not-allowed;
+    }
+  }
+
+  .method-options.disabled {
+    .thumbnail {
+      cursor: not-allowed;
+      .method-name,.method-icon,.method-description {
+        color: #a9a9a9;
+      }
+    }
+    .ROLLING,.NON_ROLLING,
+    .ROLLING:hover,.NON_ROLLING:hover {
+      background-color: #f3f3f3;
+    }
+    .selected.ROLLING,.selected.NON_ROLLING,
+    .selected.ROLLING:hover,.selected.NON_ROLLING:hover {
+      border: solid 2px #a9a9a9;
+      box-shadow: 0 8px 6px -6px #a9a9a9;
+    }
+  }
+
+  .method-precheck-message {
+    a {
+      cursor: pointer;
+    }
+    text-align: center;
+    padding-top: 10px;
+    font-size: 13px;
+    &.checking {
+      padding-top: 5px;
+      line-height: @spinner-small-height;
+      .spinner {
+        display: inline-block;
+        width: auto;
+        height: @spinner-small-height;
+        padding-left: @spinner-small-width + 4px;
+        i {
+          font-size: 1em;
+        }
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+  .method-precheck-message.GREEN {
+    .icon-ok {
+      color: @health-status-green;
+      font-size: 16px;
+    }
+  }
+  .method-precheck-message.RED {
+    .icon-remove {
+      color: #cf2a27;
+      font-size: 16px;
+    }
+  }
+  .method-precheck-message.ORANGE {
+    .icon-warning-sign {
+      color: @health-status-orange;
+      font-size: 16px;
+    }
+  }
+  .tolerance-text .tolerance-option {
+    margin: 5px 15px;
+    .ember-checkbox {
+      margin-top: 0;
+    }
+  }
+  .text {
+    margin-left: 10px;
+  }
+  .icon-question-sign {
+    color: @blue;
+  }
+}
+
+.admin-cluster {
+  .repositories-table {
+    margin-bottom: 10px;
+    border: 1px solid #dddddd;
+    overflow: auto;
+    div {
+      float: left;
+      min-height: 1px;
+    }
+    .thead {
+      width: 100%;
+      .th {
+        font-weight: bold;
+        padding: 8px;
+      }
+      .os-th {
+        width: 10%;
+      }
+      .name-th {
+        width: 16%;
+      }
+      .url-th {
+        width: 66%;
+      }
+    }
+    .tbody {
+      width: 100%;
+      .trow {
+        width: 100%;
+        border-top: 1px solid #dddddd;
+        padding-top: 8px;
+        .os-td {
+          padding-top: 4px;
+          padding-left: 8px;
+          width: 9%;
+        }
+        .sub-trow {
+          width: 100%;
+          min-height: 39px;
+          .name-td {
+            width: 16%;
+            padding-top: 4px;
+          }
+          .url-td {
+            width: 60%;
+            .ember-text-field {
+              width: 100%;
+              margin: -1px -1px -1px -2px;
+            }
+          }
+          .url-text-td {
+            width: 70%;
+            padding-top: 4px;
+            padding-left: 3px;
+            overflow: auto;
+          }
+          .edit-td {
+            width: 8%;
+            padding-top: 4px;
+            padding-left: 5px;
+            a {
+              cursor: pointer;
+            }
+          }
+          .edit-buttons-td {
+            // save or cancel
+            width: 9%;
+          }
+          .clear-td {
+            width: 3%;
+            padding-top: 5px;
+            padding-left: 12px;
+            a {
+              cursor: pointer;
+              text-decoration: none;
+            }
+            .icon-remove-sign {
+              color: #808080;
+            }
+          }
+        }
+      }
+    }
+    .textfield-error input {
+      border-color: #b94a48;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+    .disabled-textfield input {
+      color: #808080;
+      disabled: disabled;
+      pointer-events: none;
+      cursor: default;
+      background: #E4E4E4;
+    }
+    .disabled-label {
+      color: #808080;
+    }
+  }
+  #skip-validation {
+    margin-top: 10px;
+    .checkbox {
+      margin-left: 3px;
+      margin-right: 8px;
+      margin-top: 0;
+    }
+    .icon-question-sign {
+      color: @blue;
+    }
+  }
+}
+
+#upgrade-failed-hosts {
+  .host-list-container {
+    overflow-y: auto;
+    max-height: 320px;
+    margin-right: -15px;
+    .accordion {
+      margin-bottom: 0;
+      .accordion-group {
+        border: none;
+        .accordion-toggle {
+          line-height: 20px;
+          padding: 5px 0;
+          .label {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  .sub-header {
+    padding: 0 15px;
+    width: 530px;
+    margin-left: -15px;
+    border-bottom: 1px solid #eee;
+  }
+}

@@ -1,0 +1,91 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+
+<!-- HBase Master Server -->
+{{view view.dashboardMasterComponentView}}
+<!-- RegionServers -->
+<tr {{bindAttr class=":component view.regionServerComponent.componentName"}}>
+  <td class="summary-label"><a
+          href="#" {{action filterHosts view.regionServerComponent}}>{{t dashboard.services.hbase.regionServers}}</a>
+  </td>
+  <td class="summary-value">
+    {{#if App.router.clusterController.isServiceContentFullyLoaded}}
+      <span>
+        {{#view App.ComponentLiveTextView liveComponentsBinding="view.service.regionServersStarted" totalComponentsBinding="view.service.regionServersTotal"}}
+          {{view.liveComponents}}/{{view.totalComponents}}
+        {{/view}}
+      </span>
+      {{t services.service.summary.RegionServersLIVE}}
+    {{else}}
+      {{t common.loading.eclipses}}
+    {{/if}}
+  </td>
+</tr>
+<!-- PhoenixServers -->
+{{#if view.showPhoenixInfo}}
+  <tr {{bindAttr class=":component view.phoenixServerComponent.componentName"}}>
+    <td class="summary-label"><a
+            href="#" {{action filterHosts view.phoenixServerComponent}}>{{t dashboard.services.hbase.phoenixServers}}</a>
+    </td>
+    <td class="summary-value">
+      <span>
+        {{#view App.ComponentLiveTextView liveComponentsBinding="view.service.phoenixServersStarted" totalComponentsBinding="view.service.phoenixServersTotal"}}
+          {{#if App.router.clusterController.isServiceContentFullyLoaded}}
+            {{view.liveComponents}}/{{view.totalComponents}}
+          {{/if}}
+        {{/view}}
+      </span>
+      {{t services.service.summary.PhoenixServersLIVE}}
+    </td>
+  </tr>
+{{/if}}
+<!-- Regions in Transition -->
+<tr class="regions-in-trnasition">
+  <td class="summary-label">{{t dashboard.services.hbase.regions.transition}}</td>
+  <td class="summary-value">{{view.service.regionsInTransition}}</td>
+</tr>
+
+<!-- Divider-- make the remaining summary info on 2nd table-->
+</tbody>
+</table>
+</div>
+<div class="span6">
+  <table class="summary-info table no-borders table-condensed">
+    <tbody>
+
+    <!-- HBase Master Started Time -->
+    <tr class="started-time">
+      <td class="summary-label">{{t dashboard.services.hbase.masterStarted}}</td>
+      <td class="summary-value">{{view.masterStartedTime}}</td>
+    </tr>
+    <!-- HBase Master Activated Time -->
+    <tr class="activated-time">
+      <td class="summary-label">{{t dashboard.services.hbase.masterActivated}}</td>
+      <td class="summary-value">{{view.masterStartedTime}}</td>
+    </tr>
+    <!-- Average Load -->
+    <tr class="average-load">
+      <td class="summary-label">{{t dashboard.services.hbase.averageLoad}}</td>
+      <td class="summary-value">{{view.averageLoad}}</td>
+    </tr>
+    <!-- Master Server Heap -->
+    <tr class="server-heap">
+      <td class="summary-label">{{t dashboard.services.hbase.masterServerHeap}}</td>
+      <td class="summary-value">{{view.masterServerHeapSummary}}</td>
+    </tr>
+

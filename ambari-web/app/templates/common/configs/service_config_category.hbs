@@ -1,0 +1,156 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+
+<div class="accordion-heading" {{action "onToggleBlock" category target="view"}}>
+  <i {{bindAttr class=":pull-left :accordion-toggle view.category.isCollapsed:icon-caret-right:icon-caret-down"}}></i>
+  <a class="accordion-toggle category-header">
+    <span class="category-name">{{view.category.displayName}}</span>
+    {{#if view.category.errorCount}}
+      <span class="badge badge-important">{{view.category.errorCount}}</span>
+    {{/if}}
+  </a>
+</div>
+
+<div class="accordion-body collapse in" {{bindAttr style="view.isCategoryBodyVisible"}}>
+  <div class="accordion-inner service-config-section">
+    <form class="form-horizontal" autocomplete="off">
+      {{#each view.categoryConfigs}}
+        {{#unless widget}} {{! configs with widgets should be shown only on the EnhancedConfigs tabs }}
+          <div {{bindAttr class=":entry-row isHiddenByFilter:hide isOverridden:overridden-property hasCompareDiffs:overridden-property"}}>
+            {{#if showLabel}}
+              {{#unless rightSideLabel}}
+                <span {{bindAttr class="errorMessage:error: :control-group :control-label-span"}}>
+                  <label class="control-label">
+                    {{formatWordBreak displayName}}
+                    {{#if isSecureConfig}}
+                      <a href="javascript:void(null);"><i class="icon-lock" rel="tooltip" data-toggle="tooltip"
+                                                          title="security knob"></i></a>
+                    {{/if}}
+                    {{#if view.supportsHostOverrides}}
+                      {{#if isRestartRequired}}
+                        <i class="icon-refresh restart-required-property"
+                           rel="tooltip" {{bindAttr title="restartRequiredMessage"}}></i>
+                      {{/if}}
+                    {{/if}}
+                  </label>
+                </span>
+              {{else}}
+                <span class="control-group control-label-span"> </span>
+              {{/unless}}
+            {{/if}}
+            <div {{bindAttr class="showLabel:controls"}}>
+              {{! Here serviceConfigBinding should ideally be serviceConfigPropertyBinding }}
+              <div {{bindAttr class="errorMessage:error: warnMessage:warning: :control-group"}}>
+                {{view viewClass serviceConfigBinding="this" categoryConfigsAllBinding="view.categoryConfigsAll" }}
+                {{#if rightSideLabel}}
+                  <span {{bindAttr class="isEditable::muted"}}>{{formatWordBreak displayName}}</span>
+                {{/if}}
+                {{#if hintMessage}}
+                  <a class="icon-question-sign icon-blue" href="#" data-toggle="tooltip" {{bindAttr data-original-title="hintMessage"}}><a/>
+                {{/if}}
+                {{#if this.isComparison}}
+                  {{#if controller.selectedConfigGroup.isDefault}}
+                    <span
+                        class="label label-info">{{t dashboard.configHistory.table.version.prefix}}{{controller.selectedVersion}}</span>
+                    {{#if controller.isCurrentSelected}}
+                      <span class="label label-success">{{t common.current}}</span>
+                    {{/if}}
+                  {{else}}
+                    <span class="label label-info">{{t common.default}}
+                      &nbsp;{{t services.service.config.configHistory.configGroup}}</span>
+                  {{/if}}
+                {{/if}}
+                {{#if supportsFinal}}
+                  <a href="#" data-toggle="tooltip"
+                    {{bindAttr class=":btn-small :btn-final isFinal:active hideFinalIcon:hidden" disabled="isNotEditable"}}
+                    {{action "toggleFinalFlag" this target="view"}}
+                    {{translateAttr data-original-title="services.service.config.final"}}>
+                    <i class="icon-lock"></i>
+                  </a>
+                {{/if}}
+                {{#if view.canEdit}}
+                  {{#if view.supportsHostOverrides}}
+                    {{#isAccessible ADMIN}}
+                      <a href="#" data-toggle="tooltip"
+                        {{action "createOverrideProperty" this target="view"}}
+                        {{translateAttr data-original-title="common.override"}}
+                        {{bindAttr class="overrideAvailable::hide :btn-small"}}>
+                        <i class="icon-plus-sign"></i>
+                      </a>
+                    {{/isAccessible}}
+                  {{/if}}
+                  <a href="#" data-toggle="tooltip"
+                    {{action "doRestoreDefaultValue" this target="view"}}
+                    {{translateAttr data-original-title="common.undo"}}
+                    {{bindAttr class="undoAvailable::hide :btn-small"}}>
+                    <i class="icon-undo"></i>
+                  </a>
+                  {{#isAccessible ADMIN}}
+                    <a href="#" data-toggle="tooltip"
+                      {{action "removeProperty" this target="view"}}
+                      {{translateAttr data-original-title="common.remove"}}
+                      {{bindAttr class="removeAvailable::hide :btn-small"}}>
+                      <i class="icon-minus-sign"></i>
+                    </a>
+                  {{/isAccessible}}
+                  <a rel='SwitchGroupTooltip' {{bindAttr data-original-title="this.group.switchGroupTextShort" class="switchGroupAvailable:show:hide :action"}}
+                    {{action selectConfigGroup group target="controller"}}>
+                    {{group.switchGroupTextShort}}
+                  </a>
+                  <a href="#" data-toggle="tooltip"
+                    {{action "setRecommendedValue" this target="view"}}
+                    {{translateAttr data-original-title="services.service.config.setRecommendedValue"}}
+                    {{bindAttr class="setRecommendedAvailable::hide :btn-small"}}>
+                    <i class="icon-repeat"></i>
+                  </a>
+                {{/if}}
+                <span class="help-inline">{{errorMessage}}</span>
+                <span class="help-inline">{{warnMessage}}</span>
+              </div>
+              {{#if this.isComparison}}
+                {{view App.ServiceConfigView.SCPComparisonRowsView serviceConfigPropertyBinding="this"}}
+              {{else}}
+                {{#if this.isOverridden}}
+                  {{view App.ServiceConfigView.SCPOverriddenRowsView
+                  serviceConfigPropertyBinding="this"
+                  isDefaultGroupSelectedBinding="controller.selectedConfigGroup.isDefault"
+                  }}
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+          {{#if this.additionalView}}
+            {{view additionalView}}
+          {{/if}}
+        {{/unless}}
+      {{/each}}
+
+      {{! For Advanced, Advanced Core Site, Advanced HDFS Site sections, show the 'Add Property' link.}}
+      {{#isAccessible ADMIN}}
+        {{#if view.canEdit}}
+          {{#if view.category.customCanAddProperty}}
+            <div>
+              <a href="#" {{action "showAddPropertyWindow" this target="view" }} >{{t installer.step7.config.addProperty}}
+                ...</a>
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/isAccessible}}
+    </form>
+  </div>
+</div>

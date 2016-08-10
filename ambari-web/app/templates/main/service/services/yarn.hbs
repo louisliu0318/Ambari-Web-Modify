@@ -1,0 +1,94 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+{{view view.dashboardMasterComponentView}}
+
+<!-- NodeManagers -->
+<tr {{bindAttr class=":component view.nodeManagerComponent.componentName"}}>
+  <td class="summary-label">
+    <a href="#" {{action filterHosts view.nodeManagerComponent}}>{{t dashboard.services.yarn.nodeManagers}}</a>
+  </td>
+  <td class="summary-value">
+    {{#if App.router.clusterController.isServiceContentFullyLoaded}}
+      <span>
+        {{#view App.ComponentLiveTextView liveComponentsBinding="view.service.nodeManagersStarted" totalComponentsBinding="view.service.nodeManagersTotal"}}
+          {{view.liveComponents}}/{{view.totalComponents}}
+        {{/view}}
+      </span>{{t common.started}}
+    {{else}}
+      {{t common.loading.eclipses}}
+    {{/if}}
+  </td>
+</tr>
+<!-- NodeManagers status -->
+<tr class="nodemanager-status">
+  <td class="summary-label">{{t dashboard.services.yarn.nodeManagers.status}}</td>
+  <td class="summary-value">{{view.nodeManagersStatus}}</td>
+</tr>
+<!-- YARN Clients -->
+<tr {{bindAttr class=":component view.yarnClientComponent.componentName"}}>
+  <td class="summary-label"><a {{action filterHosts view.yarnClientComponent}}
+          href="javascript:void(null)">{{pluralize view.service.installedClients singular="t:dashboard.services.yarn.client" plural="t:dashboard.services.yarn.clients"}}</a>
+  </td>
+  <td class="summary-value">
+    <span class="green-live">{{view.service.installedClients}} </span>
+    {{pluralize view.service.installedClients singular="t:dashboard.services.yarn.client" plural="t:dashboard.services.yarn.clients"}} {{t common.installed}}
+  </td>
+</tr>
+<!-- ResourceManager Uptime -->
+<tr class="resourcemanager-uptime">
+  <td class="summary-label">{{t dashboard.services.yarn.resourceManager.uptime}}</td>
+  <td class="summary-value">{{view.nodeUptime}}</td>
+</tr>
+
+<!-- Divider-- make the remaining summary info on 2nd table-->
+</tbody>
+</table>
+</div>
+<div class="span6">
+  <table class="summary-info table no-borders table-condensed">
+    <tbody>
+
+    <!-- ResourceManager Heap -->
+    <tr class="resourcemanager-heap">
+      <td class="summary-label">{{t dashboard.services.resourceManager.nodes.heap}}</td>
+      <td class="summary-value">{{view.nodeHeap}}</td>
+    </tr>
+    <!-- Containers -->
+    <tr class="yarn-containers">
+      <td class="summary-label">{{t dashboard.services.yarn.containers}}</td>
+      <td class="summary-value">{{view.containers}}</td>
+    </tr>
+    <!-- Applications -->
+    <tr class="yarn-applications">
+      <td class="summary-label">{{t dashboard.services.yarn.apps}}</td>
+      <td class="summary-value">{{view.apps}}</td>
+    </tr>
+    <!-- Memory -->
+    <tr class="yarn-memory">
+      <td class="summary-label">{{t dashboard.services.yarn.memory}}</td>
+      <td class="summary-value">{{view.memory}}</td>
+    </tr>
+    <!-- Queues -->
+    <tr class="yarn-queues">
+      <td class="summary-label">{{t dashboard.services.yarn.queues}}</td>
+      <td class="summary-value">
+        <span rel="queue-tooltip" class="text-tooltip" {{bindAttr data-original-title="view.service.queueFormatted" }}>
+          {{view.queues}}
+        </span>
+      </td>
+    </tr>

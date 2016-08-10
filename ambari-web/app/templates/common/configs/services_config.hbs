@@ -1,0 +1,62 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+{{#if controller.isRecommendedLoaded}}
+    <ul class="nav nav-tabs">
+      {{#each service in controller.stepConfigs}}
+        {{#if service.showConfig}}
+          {{#view App.ServiceConfigTab}}
+              <a href="#{{unbound service.serviceName}}" {{bindAttr class=":active service.selected:new"}}
+                 data-toggle="tab" {{action selectService service target="view"}}>
+                {{service.displayName}}{{#if service.errorCount}}<span
+                      class="badge badge-important">{{service.errorCount}}</span>{{/if}}</a>
+          {{/view}}
+        {{/if}}
+      {{/each}}
+    </ul>
+{{else}}
+    {{view App.SpinnerView}}
+{{/if}}
+{{#if hasChangedDependencies}}
+  <div class="alert alert-warning">
+    <span>{{dependenciesMessage}}</span> <a href="#" {{action "showChangedDependentConfigs" target="controller"}}>{{t common.showDetails}}</a>
+  </div>
+{{/if}}
+{{#if showSelectGroupsPopup}}
+  <div class="alert alert-warning">
+    <span>{{dependenciesGroupMessage}}</span> <a href="#" {{action "changedDependentGroup" target="controller"}}>{{t common.showDetails}}</a>
+  </div>
+{{/if}}
+{{view App.ServiceConfigContainerView}}
+{{#if controller.isRecommendedLoaded}}
+    <p class="loading align-center"></p>
+    {{#if isSubmitDisabled}}
+      {{#unless submitButtonClicked}}
+        <div class="alert">
+          <span class="icon-warning-sign"></span> {{t installer.step7.attentionNeeded}}<br />
+          {{issuesFilterText}} <a href="#" {{action toggleIssuesFilter target="controller"}}>{{issuesFilterLinkText}}</a>
+        </div>
+      {{/unless}}
+    {{else}}
+      {{#unless submitButtonClicked}}
+        <div class="alert alert-success">
+          <span class="icon-check"></span> {{t installer.step7.noIssues}}<br />
+          <a href="#" {{action toggleIssuesFilter target="controller"}}>{{issuesFilterLinkText}}</a>
+        </div>
+      {{/unless}}
+    {{/if}}
+{{/if}}

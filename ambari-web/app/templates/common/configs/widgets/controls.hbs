@@ -1,0 +1,147 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+
+<div {{bindAttr class="view.isPropertyUndefined::hide :left :widget-config-raw"}}>
+  <i>{{t common.property.undefined}}</i>
+</div>
+{{#if view.supportSwitchToTextBox}}
+  {{#unless view.isPropertyUndefined}}
+    <div {{bindAttr class="view.config.showAsTextBox::hide :left :widget-config-raw"}}>
+      {{view App.PlainConfigTextField sectionBinding="view.section" subSectionBinding="view.subSection" configBinding="view.config" disabledBinding="view.canNotEdit"}}
+    </div>
+  {{/unless}}
+{{/if}}
+{{#if view.canEdit}}
+  <div {{bindAttr class=":widget-config-controls view.referToSelectedGroup::clear-min-height"}}>
+    <div {{bindAttr class=":widget-col :left view.config.isNotDefaultValue::not-show"}}>
+      <a href="#"
+        {{bindAttr class=":widget-action :widget-action-undo view.undoAllowed::not-show"}}
+        data-toggle="tooltip" {{translateAttr data-original-title="common.undo"}}
+        {{action "restoreValue" target="view"}}>
+         <i class="icon-undo"></i>
+      </a>
+    </div>
+    <div class="widget-col left">
+      {{#if view.showPencil}}
+        {{#if view.isWidgetViewAllowed}}
+          <a href="#"
+            data-toggle="tooltip" {{translateAttr data-original-title="common.edit"}}
+            {{bindAttr class=":icon-pencil :widget-action :widget-action-switch-view view.isHover::hide view.config.showAsTextBox::active"}}
+            {{action "toggleWidgetView" target="view"}}>
+          </a>
+        {{else}}
+          <i class="icon-pencil widget-action widget-action-switch-view text-error"
+             data-toggle="tooltip" {{bindAttr data-original-title="view.issueMessage"}}></i>
+        {{/if}}
+      {{/if}}
+      {{#if view.config.recommendedValueExists}}
+        {{#unless view.disabled}}
+          <a href="#"
+            {{bindAttr class=":icon-repeat :widget-action-set-recommended view.isHover::hide :widget-action"}}
+            {{action "setRecommendedValue" target="view"}} data-toggle="tooltip" {{translateAttr data-original-title="services.service.config.setRecommendedValue"}}>
+          </a>
+        {{/unless}}
+      {{/if}}
+    </div>
+    <div class="widget-col right">
+      {{#if view.config.supportsFinal}}
+        <a href="#" data-toggle="tooltip"
+          {{bindAttr class=":widget-action :widget-action-final view.config.isFinal:active view.showFinalConfig:show:hide" disabled="view.config.isNotEditable"}}
+          {{action "toggleFinalFlag" view.config target="view"}}
+          {{translateAttr data-original-title="services.service.config.final"}}>
+          <i class="icon-lock"></i>
+        </a>
+      {{/if}}
+      {{#unless view.isOriginalSCP}}
+        {{#unless view.disabled}}
+          {{#isAccessible ADMIN}}
+            <a {{bindAttr class=":widget-action :widget-action-remove view.isHover:show:hide"}} href="#"
+                                                                                                data-toggle="tooltip"
+              {{action "removeOverride" view.config target="view.parentView"}}
+              {{translateAttr data-original-title="common.remove"}}>
+              <i class="icon-minus-sign"></i>
+            </a>
+          {{/isAccessible}}
+        {{/unless}}
+      {{/unless}}
+      {{#if view.overrideAllowed}}
+        {{#isAccessible ADMIN}}
+          <div {{bindAttr class=":widget-action :widget-action-override view.isHover:show:hide"}}>
+            <a class="widget-action widget-action-override" href="#" data-toggle="tooltip"
+              {{action "createOverrideProperty" view.config target="view.parentView"}}
+              {{translateAttr data-original-title="common.override"}}>
+              <i class="icon-plus-sign"></i>
+            </a>
+          </div>
+        {{/isAccessible}}
+      {{/if}}
+    </div>
+  </div>
+{{/if}}
+
+{{#if controller.selectedConfigGroup.isDefault}}
+  {{#if view.configGroup}}
+    <a href="#" data-toggle="tooltip" {{bindAttr data-original-title="view.configGroup.switchGroupTextFull" }}
+       class="action" {{action selectConfigGroup view.configGroup target="controller"}}>
+      {{view.configGroup.switchGroupTextShort}}
+    </a>
+  {{/if}}
+{{/if}}
+
+{{#if view.isComparison}}
+  <div class="widget-config-controls version-labels">
+    {{#if controller.selectedConfigGroup.isDefault}}
+      <span class="label label-info">{{t dashboard.configHistory.table.version.prefix}}{{controller.selectedVersion}}</span>
+      {{#if controller.isCurrentSelected}}
+        <span class="label label-success icon-ok label-current" data-toggle="tooltip" {{translateAttr title="common.current"}}></span>
+      {{/if}}
+      {{#if view.config.supportsFinal}}
+        <i {{bindAttr class=":icon-lock view.config.isFinal::hidden" }}></i>
+      {{/if}}
+    {{else}}
+      <span class="label label-info">{{t common.default}}
+        &nbsp;{{t services.service.config.configHistory.configGroup}}</span>
+    {{/if}}
+  </div>
+{{else}}
+  {{#unless view.isBeingCompared}} {{! subview(ConfigWidgetComparisonView) will take care of config being compared}}
+    {{#unless view.canEdit}}
+      {{#if view.config.supportsFinal}}
+      <div class="widget-config-controls version-labels">
+        <i {{bindAttr class=":icon-lock view.config.isFinal::hidden" }}></i>
+      </div>
+      {{/if}}
+    {{/unless}}
+  {{/unless}}
+{{/if}}
+
+
+{{#if view.isOriginalSCP}}
+  {{#unless view.config.hasCompareDiffs}}
+    <div class="clearfix"></div>
+    {{view App.ConfigWidgetOverrideView
+    serviceConfigPropertyBinding="view.config"
+    isDefaultGroupSelectedBinding="controller.selectedConfigGroup.isDefault"
+    }}
+  {{/unless}}
+{{/if}}
+
+{{#if view.isComparison}}
+  <div class="clearfix"></div>
+  {{view App.ConfigWidgetComparisonView serviceConfigPropertyBinding="view.config"}}
+{{/if}}

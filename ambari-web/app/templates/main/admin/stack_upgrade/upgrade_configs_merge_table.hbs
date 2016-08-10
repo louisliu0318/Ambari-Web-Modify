@@ -1,0 +1,44 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+
+<h4>{{t popup.clusterCheck.Upgrade.configsMerge.title}}</h4>
+<div class="alert alert-warning">
+  {{t popup.clusterCheck.Upgrade.configsMerge.alert}}
+</div>
+<div class="limited-height-2">
+  <table class="configs-table table table-striped">
+    <thead>
+    <tr>
+      <th>{{t popup.clusterCheck.Upgrade.configsMerge.configType}}</th>
+      <th>{{t popup.clusterCheck.Upgrade.configsMerge.propertyName}}</th>
+      <th>{{t popup.clusterCheck.Upgrade.configsMerge.currentValue}}</th>
+      <th>{{t popup.clusterCheck.Upgrade.configsMerge.resultingValue}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each view.configs}}
+      <tr>
+        <td>{{type}}</td>
+        <td>{{name}}</td>
+        <td>{{currentValue}}</td>
+        <td {{bindAttr class="willBeRemoved:no-value"}}>{{resultingValue}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>

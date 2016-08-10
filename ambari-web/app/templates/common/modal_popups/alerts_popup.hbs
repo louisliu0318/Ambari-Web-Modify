@@ -1,0 +1,80 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+
+<div class="alerts-popup-wrap">
+  {{#if view.isLoaded}}
+    <div class="alert-list-main-warp">
+      <div class="top-wrap">
+        <div class="service-top">{{t alerts.definition.details.serviceHost}}</div>
+        <div class="name-top">{{t alerts.fastAccess.popup.body.name}}</div>
+        <div class="last-triggered-top">{{t common.status}}</div>
+      </div>
+        <div id="alert-info">
+          {{#if view.isAlertEmptyList}}
+            <div class="alert-list-wrap">{{t alerts.fastAccess.popup.body.noalerts}}</div>
+          {{else}}
+            {{#each alertInstance in view.pageContent}}
+              <div class="alert-list-wrap">
+                <div class="alert-list-line-cursor">
+                  <div class="service-text">
+                    {{view App.AlertInstanceServiceHostView instanceBinding="alertInstance"}}
+                  </div>
+                  <div class="name-text">
+                    <div>
+                      <a href="#" {{action "gotoAlertDetails" alertInstance target="view"}}>{{alertInstance.label}}</a>
+                    </div>
+                    <div class="instance-text">
+                      {{alertInstance.text}}
+                    </div>
+                  </div>
+                  <div class="status-col" {{bindAttr title="alertInstance.lastTriggered"}}>
+                    <span>
+                      <span class="status-icon">{{{alertInstance.status}}}</span>
+                      <time>{{alertInstance.lastTriggeredForFormatted}}</time>
+                    </span>
+                  </div>
+              </div>
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    </div>
+
+    <div {{bindAttr class="view.filteringComplete:hidden :table-overlay"}}>
+      {{view App.SpinnerView}}
+    </div>
+
+    {{#if view.isPaginate}}
+      <div class="page-bar pull-right no-borders mtm">
+        <div class="items-on-page">
+          <label>{{t common.show}}: {{view view.rowsPerPageSelectView selectionBinding="view.displayLength"}}</label>
+        </div>
+        <div class="info">{{view.paginationInfo}}</div>
+        <div class="paging_two_button">
+          {{view view.paginationFirst}}
+          {{view view.paginationLeft}}
+          {{view view.paginationRight}}
+          {{view view.paginationLast}}
+        </div>
+      </div>
+    {{/if}}
+  {{else}}
+    {{view App.SpinnerView}}
+  {{/if}}
+</div>
+
