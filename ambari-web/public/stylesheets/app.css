@@ -1320,6 +1320,7 @@ ul.typeahead.dropdown-menu {
   min-width: 980px;
 }
 footer {
+  text-align: center;
   position: relative;
   border-top: 1px solid #e5e5e5;
   padding: 30px 0;
@@ -1336,25 +1337,25 @@ footer {
 }
 #top-nav .navbar.navbar-static-top,
 .ru-badge .navbar.navbar-static-top {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 #top-nav .navbar.navbar-static-top .navbar-inner,
 .ru-badge .navbar.navbar-static-top .navbar-inner {
-  background-image: -moz-linear-gradient(top, #555555, #333333);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555555), to(#333333));
-  background-image: -webkit-linear-gradient(top, #555555, #333333);
-  background-image: -o-linear-gradient(top, #555555, #333333);
-  background-image: linear-gradient(to bottom, #555555, #333333);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#555555, endColorstr=#333333);
+  background-image: -moz-linear-gradient(top, #0459a2, #037dbf);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0459a2), to(#037dbf));
+  background-image: -webkit-linear-gradient(top, #0459a2, #037dbf);
+  background-image: -o-linear-gradient(top, #0459a2, #037dbf);
+  background-image: linear-gradient(to bottom, #0459a2, #037dbf);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0459a2, endColorstr=#037dbf);
   -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
-  max-height: 40px;
+  max-height: 90px;
 }
 #top-nav .navbar.navbar-static-top .logo,
 .ru-badge .navbar.navbar-static-top .logo {
   float: left;
-  padding-top: 2px;
+  padding-top: 25px;
 }
 #top-nav .navbar.navbar-static-top .logo img,
 .ru-badge .navbar.navbar-static-top .logo img {
@@ -1362,13 +1363,13 @@ footer {
 }
 #top-nav .navbar.navbar-static-top .brand,
 .ru-badge .navbar.navbar-static-top .brand {
-  color: #ffffff;
-  font-size: 16px;
+  color: #fff;
+  font-size: 23px;
   font-weight: normal;
-  line-height: 32px;
+  line-height: 75px;
   margin-left: 0;
   padding: 2px 5px 0 10px;
-  text-shadow: 0 1px 0 #555555;
+  text-shadow: 0 1px 0 #006dcc;
 }
 #top-nav .navbar.navbar-static-top .brand.cluster-name,
 .ru-badge .navbar.navbar-static-top .brand.cluster-name {
@@ -1487,6 +1488,7 @@ footer {
 .ru-badge .navbar.navbar-static-top .top-nav-menu.nav {
   display: block;
   float: right;
+  padding-top: 50px;
   padding-left: 20px;
   overflow: visible;
 }
@@ -1646,11 +1648,12 @@ footer {
 }
 #top-nav .navbar-inner,
 .ru-badge .navbar-inner {
-  min-height: 40px;
+  min-height: 90px;
   border: none;
 }
 #top-nav .top-nav-user,
 .ru-badge .top-nav-user {
+  padding-top: 50px;
   float: right;
 }
 #top-nav .navbar .nav .top-nav-user .active > a,
@@ -4407,7 +4410,7 @@ table.graphs {
 #hosts .table td.health span {
   display: block;
   height: 13px;
-  margin: 4px 0 0 0;
+  margin: 4px 00 0;
   width: 13px;
 }
 #hosts .table td.health .icon-medkit {
@@ -7654,12 +7657,12 @@ input[type="checkbox"].align-checkbox {
   }
 }
 #config_history_flow .version-info-bar {
-  background-image: -moz-linear-gradient(top, #555555, #333333);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555555), to(#333333));
-  background-image: -webkit-linear-gradient(top, #555555, #333333);
-  background-image: -o-linear-gradient(top, #555555, #333333);
-  background-image: linear-gradient(to bottom, #555555, #333333);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#555555, endColorstr=#333333);
+  background-image: -moz-linear-gradient(top, #0459a2, #037dbf);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0459a2), to(#037dbf));
+  background-image: -webkit-linear-gradient(top, #0459a2, #037dbf);
+  background-image: -o-linear-gradient(top, #0459a2, #037dbf);
+  background-image: linear-gradient(to bottom, #0459a2, #037dbf);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0459a2, endColorstr=#037dbf);
   -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -11414,3 +11417,4 @@ input[type="checkbox"].align-checkbox {
   background-color: rgba(211, 237, 247, 0.39);
   padding: 10px 5px 0px 10px;
 }
+

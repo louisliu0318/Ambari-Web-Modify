@@ -159,7 +159,7 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
@@ -2147,7 +2147,7 @@ table [class*=span],
  * that there are no issues. Since bootstrap.css has the sprite.less
  * compiled into it, we are commenting out the section contributed by
  * sprite.less.
-  
+
 
 [class^="icon-"],
 [class*=" icon-"] {

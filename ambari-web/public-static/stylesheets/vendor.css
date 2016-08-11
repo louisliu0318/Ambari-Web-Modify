@@ -2147,7 +2147,7 @@ table [class*=span],
  * that there are no issues. Since bootstrap.css has the sprite.less
  * compiled into it, we are commenting out the section contributed by
  * sprite.less.
-  
+
 
 [class^="icon-"],
 [class*=" icon-"] {
@@ -4237,7 +4237,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .btn,
 .navbar .btn-group {
-  margin-top: 5px;
+  margin-top: 52px; /*M*/
 }
 
 .navbar .btn-group .btn,
@@ -8467,7 +8467,7 @@ a [class*=" icon-"] {
 }
 
 /*
- * D3  visualization components 
+ * D3  visualization components
  * Styles for Dag viewer and Sankey diagram
  */
 .wfdag {
@@ -8628,7 +8628,7 @@ a [class*=" icon-"] {
 	position: relative;
 }
 .rickshaw_graph svg {
-	display: block;	
+	display: block;
 	overflow: hidden;
 }
 
@@ -8767,7 +8767,7 @@ a [class*=" icon-"] {
 .rickshaw_graph .y_ticks.glow text {
 	fill: black;
 	color: black;
-	text-shadow: 
+	text-shadow:
 		-1px 1px 0 rgba(255, 255, 255, 0.1),
 		1px -1px 0 rgba(255, 255, 255, 0.1),
 		1px 1px 0 rgba(255, 255, 255, 0.1),
@@ -8781,7 +8781,7 @@ a [class*=" icon-"] {
 .rickshaw_graph .y_ticks.inverse text {
 	fill: white;
 	color: white;
-	text-shadow: 
+	text-shadow:
 		-1px 1px 0 rgba(0, 0, 0, 0.8),
 		1px -1px 0 rgba(0, 0, 0, 0.8),
 		1px 1px 0 rgba(0, 0, 0, 0.8),
@@ -8797,7 +8797,7 @@ a [class*=" icon-"] {
 	color: white;
 	background: #404040;
 	display: inline-block;
-	padding: 12px 5px; 
+	padding: 12px 5px;
 	border-radius: 2px;
 	position: relative;
 }
@@ -10225,8 +10225,8 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   opacity: 0.25;
 }
 
-.ui-dialog .ui-dialog-titlebar-close span { 
-  display: block; 
+.ui-dialog .ui-dialog-titlebar-close span {
+  display: block;
   margin: 1px;
   text-indent: 9999px;
 }
@@ -10341,7 +10341,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 
 
 .ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; border-bottom:1px solid #DDD; }
-.ui-tabs .ui-tabs-nav li {  text-decoration: none; list-style: none; float: left; position: relative; top: 1px; padding: 0px 0px 1px 0px; white-space: nowrap; background:none; border:0px; 
+.ui-tabs .ui-tabs-nav li {  text-decoration: none; list-style: none; float: left; position: relative; top: 1px; padding: 0px 0px 1px 0px; white-space: nowrap; background:none; border:0px;
 
 }
 
@@ -10383,7 +10383,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   outline:none;
 }
 
-.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; color:#0069D6; background:none; font-weight:normal; margin-bottom:-1px;} 
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; color:#0069D6; background:none; font-weight:normal; margin-bottom:-1px;}
 /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
 .ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
 .ui-tabs-panel .ui-button{text-decoration:none;}
@@ -10513,7 +10513,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   margin-bottom:0px;
   font-size:normal;
   text-shadow: 0px;
-  color:white;  
+  color:white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -10689,7 +10689,7 @@ div.wijmo-wijmenu{
   color:#BFBFBF;
 }
 
-.wijmo-wijmenu .ui-state-default .wijmo-wijmenu-text{    
+.wijmo-wijmenu .ui-state-default .wijmo-wijmenu-text{
   color:#BFBFBF;
 }
 
@@ -10829,5 +10829,3 @@ div.wijmo-wijmenu .wijmo-wijmenu-child .wijmo-wijmenu-text
   color:#BFBFBF;
   filter: none;
 }
-
-

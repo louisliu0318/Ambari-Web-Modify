@@ -1336,7 +1336,7 @@ footer {
 }
 #top-nav .navbar.navbar-static-top,
 .ru-badge .navbar.navbar-static-top {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;/*M:字体修改*/
 }
 #top-nav .navbar.navbar-static-top .navbar-inner,
 .ru-badge .navbar.navbar-static-top .navbar-inner {
@@ -1344,17 +1344,17 @@ footer {
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555555), to(#333333));
   background-image: -webkit-linear-gradient(top, #555555, #333333);
   background-image: -o-linear-gradient(top, #555555, #333333);
-  background-image: linear-gradient(to bottom, #555555, #333333);
+  background-image: linear-gradient(to bottom, #d6e3f7, #006dcc); /*M:banner颜色*/
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#555555, endColorstr=#333333);
   -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
-  max-height: 40px;
+  max-height: 90px; /*M:banner高度*/
 }
 #top-nav .navbar.navbar-static-top .logo,
 .ru-badge .navbar.navbar-static-top .logo {
   float: left;
-  padding-top: 2px;
+  padding-top: 20px;
 }
 #top-nav .navbar.navbar-static-top .logo img,
 .ru-badge .navbar.navbar-static-top .logo img {
@@ -1362,13 +1362,13 @@ footer {
 }
 #top-nav .navbar.navbar-static-top .brand,
 .ru-badge .navbar.navbar-static-top .brand {
-  color: #ffffff;
-  font-size: 16px;
+  color: #010202;/*M*/
+  font-size: 23px;/*M*/
   font-weight: normal;
-  line-height: 32px;
+  line-height: 64px;/*M*/
   margin-left: 0;
   padding: 2px 5px 0 10px;
-  text-shadow: 0 1px 0 #555555;
+  text-shadow: 0 1px 0 #006dcc;/*M*/
 }
 #top-nav .navbar.navbar-static-top .brand.cluster-name,
 .ru-badge .navbar.navbar-static-top .brand.cluster-name {
@@ -1485,6 +1485,7 @@ footer {
 }
 #top-nav .navbar.navbar-static-top .top-nav-menu.nav,
 .ru-badge .navbar.navbar-static-top .top-nav-menu.nav {
+  margin-top: 50px;
   display: block;
   float: right;
   padding-left: 20px;
@@ -1646,7 +1647,7 @@ footer {
 }
 #top-nav .navbar-inner,
 .ru-badge .navbar-inner {
-  min-height: 40px;
+  min-height: 90px; /*M:banner高度*/
   border: none;
 }
 #top-nav .top-nav-user,
@@ -11414,4 +11415,3 @@ input[type="checkbox"].align-checkbox {
   background-color: rgba(211, 237, 247, 0.39);
   padding: 10px 5px 0px 10px;
 }
-

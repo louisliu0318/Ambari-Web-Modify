@@ -9,6 +9,6 @@
       "jdk.name": "jdk-7u67-linux-x64.tar.gz",
       "server.os_type": "redhat"
     },
-    "component_version": "1.5.0"
+    "component_version": "1.0.0"
   }
 }
