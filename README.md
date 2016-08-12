@@ -3,7 +3,6 @@
 标签： Ambari Bigdata
 
 ---
-[TOC]
 
 ## 调试过程
 
